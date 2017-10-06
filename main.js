@@ -18,9 +18,23 @@ var api = {};
     - You may not use any external libraries
 
 */
-api.fanOut = function(input, fn) {
+api.fanOut = function (input, fn) {
   // TODO: your implementation here.
-  return [];
+
+  // SOLUTION 1: with methods
+  // return input.map(item => {
+  //   return fn(item);
+  // })
+
+  // SOLUTION 2: without methods
+  // Define array to be returned
+  let output = [];
+  // Apply fn to each item in input collection and push the result to output
+  for (var i = 0; i < input.length; i++) {
+    output.push(fn(input[i]));
+  }
+  // Return new collection
+  return output;
 };
 
 
@@ -46,9 +60,17 @@ api.fanOut = function(input, fn) {
    - You may not use any external libraries
 
  */
-api.funnel = function(input, fn, startValue){
+api.funnel = function (input, fn, startValue) {
   // TODO: your implementation here.
-  return 0;
+
+  // Define sum variable to be returned and determine if it will accumulate numbers or strings
+  let sum = isNaN(input[0]) ? '' : 0;
+  // For each number or word in the input collection, add the number to the sum value or add the word to the end of the sum string
+  for (var i = 0; i < input.length; i++) {
+    sum += input[i];
+  }
+  // Return final sum
+  return fn(sum, startValue);
 };
 
 
@@ -72,9 +94,23 @@ api.funnel = function(input, fn, startValue){
  - You may not use any external libraries
 
  */
-api.distill = function(input, fn){
+api.distill = function (input, fn) {
   // TODO: your implementation here.
-  return [];
+
+  // SOLUTION 1: with methods
+  // return input.filter(item => {
+  //   return fn(item);
+  // })
+
+  // SOLUTION 2: without methods
+  // Define array to be returned
+  let output = [];
+  // Apply fn to each item in input collection and, if true, push the result to output
+  for (var i = 0; i < input.length; i++) {
+    fn(input[i]) ? output.push(input[i]) : false;
+  }
+  // Return new/distilled collection
+  return output;
 };
 
 
@@ -95,9 +131,22 @@ api.distill = function(input, fn){
  - You may not use any external libraries
 
  */
-api.numberOfChars = function(input){
+api.numberOfChars = function (input) {
   // TODO: your implementation here
-  return 0;
+
+  // SOLUTION 1: with methods
+  // let characters = input.join('');
+  // return characters.length;
+
+  //SOLUTION 2: without methods
+  // Define variable/string to hold all characters in collection
+  let characters = '';
+  // Combine all items in input collection in a single string in characters variable
+  for (var i = 0; i < input.length; i++) {
+    characters += input[i];
+  }
+  // Return length (number of characters) in characters string
+  return characters.length;
 };
 
 
@@ -119,9 +168,30 @@ api.numberOfChars = function(input){
  - You may not use any external libraries
 
  */
-api.numberOfCertainChars= function(input, c){
-// TODO: your implementation here
-  return 0;
+api.numberOfCertainChars = function (input, c) {
+  // TODO: your implementation here
+
+  // SOLUTION 1: with methods
+  // let count = 0;
+  // let characters = input.join('');
+  // for (var i = 0; i < characters.length; i++) {
+  //   characters[i] == c ? count++ : false;
+  // }
+  // return count;
+
+  //SOLUTION 2: without methods
+  // Define variable that will count the number of times c occurs
+  let count = 0;
+  // For each item in the input collection, test each character in the item to see if it matches c and, if true, increase the count by 1
+  for (var i = 0; i < input.length; i++) {
+
+    for (var j = 0; j < input[i].length; j++) {
+      input[i][j] == c ? count++ : false;
+    }
+
+  }
+  // Return the final number of c characters 
+  return count;
 };
 
 module.exports = api;
