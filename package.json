@@ -6,8 +6,7 @@
   "scripts": {
     "test": "gulp watch"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "author": "sandersen",
   "license": "ISC",
   "devDependencies": {
